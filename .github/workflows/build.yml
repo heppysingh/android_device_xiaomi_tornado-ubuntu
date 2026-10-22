@@ -20,6 +20,18 @@ jobs:
           sudo apt-get clean
           sudo docker system prune -af || true
 
+      - name: Show system resources
+        run: |
+          echo "📊 Checking runner resources..."
+          echo "CPU cores:"
+          nproc
+          echo
+          echo "Memory:"
+          free -h
+          echo
+          echo "Disk:"
+          df -h
+
       - name: Cleanup
         uses: rokibhasansagar/slimhub_actions@main
       - name: Install Dependencies
@@ -32,6 +44,8 @@ jobs:
             python3 rsync bc gperf libssl-dev \
             libncurses5-dev libncursesw5-dev \
             lz4 cpio
+
+          
 
       - name: Install repo
         run: |
