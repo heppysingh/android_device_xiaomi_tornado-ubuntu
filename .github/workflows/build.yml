@@ -36,9 +36,6 @@ jobs:
           echo
           echo "Disk:"
           df -h
-      - name: Unmount tmpsfs
-        run: |
-          sudo umount -l /tmp && sudo chmod 1777 /tmp
            
         
       - name: Install Dependencies
@@ -63,26 +60,26 @@ jobs:
 
       - name: Initialize TWRP Source
         run: |
-          mkdir -p /tmp/twrp
-          cd /tmp/twrp
+          mkdir -p ~/twrp
+          cd ~/twrp
           repo init -u https://github.com/minimal-manifest-twrp/platform_manifest_twrp_aosp.git -b twrp-12.1
           repo sync -c --no-clone-bundle --no-tags -j2
 
       - name: Copy Device Tree
         run: |
-          mkdir -p /tmp/twrp/device/xiaomi/tornado
+          mkdir -p ~/twrp/device/xiaomi/tornado
           rsync -a \
             --exclude=.git \
             --exclude=.github \
-            ./ /tmp/twrp/device/xiaomi/tornado/
+            ./ ~/twrp/device/xiaomi/tornado/
 
       - name: Remove vendorsetup.sh
         run: |
-          rm -f /tmp/twrp/device/xiaomi/tornado/vendorsetup.sh || true
+          rm -f ~/twrp/device/xiaomi/tornado/vendorsetup.sh || true
 
       - name: Build Recovery
         run: |
-          cd /tmp/twrp
+          cd ~/twrp
           source build/envsetup.sh
           lunch twrp_tornado-eng
           mka vendorbootimage || mka recoveryimage || mka bootimage
@@ -105,7 +102,7 @@ jobs:
           name: twrp-tornado
           if-no-files-found: warn
           path: |
-            /tmp/twrp/out/target/product/tornado/vendor_boot.img
-            /tmp/twrp/out/target/product/tornado/vendorboot.img
-            /tmp/twrp/out/target/product/tornado/boot.img
-            /tmp/twrp/out/target/product/tornado/recovery.img
+            ~/twrp/out/target/product/tornado/vendor_boot.img
+            ~/twrp/out/target/product/tornado/vendorboot.img
+            ~twrp/out/target/product/tornado/boot.img
+            ~/twrp/out/target/product/tornado/recovery.img
