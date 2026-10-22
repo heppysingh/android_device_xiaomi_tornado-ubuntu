@@ -20,6 +20,11 @@ jobs:
           sudo apt-get clean
           sudo docker system prune -af || true
 
+
+
+      - name: Cleanup
+        uses: rokibhasansagar/slimhub_actions@main
+        
       - name: Show system resources
         run: |
           echo "📊 Checking runner resources..."
@@ -31,9 +36,6 @@ jobs:
           echo
           echo "Disk:"
           df -h
-
-      - name: Cleanup
-        uses: rokibhasansagar/slimhub_actions@main
       - name: Install Dependencies
         run: |
           sudo apt-get update
