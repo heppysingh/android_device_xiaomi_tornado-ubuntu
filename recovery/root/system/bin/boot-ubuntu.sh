@@ -15,7 +15,7 @@ DS_FLAGS="--hw-access --privileged=full -B /tmp:/recovery --foreground"
 # -i ${ROOTFS_PATH} to -r ${ROOTFS_PATH} in the main command.
 if [ ! -b /dev/block/mapper/rootfs_b ]; then
     echo "[boot-ubuntu] Mapping rootfs_b..." > /dev/kmsg
-    lptools --map rootfs_b > /dev/kmsg 2>&1
+    /system/bin/lptools map rootfs_b > /dev/kmsg 2>&1
 fi
 
 # Wait up to 5 seconds for ueventd to populate the mapper node
