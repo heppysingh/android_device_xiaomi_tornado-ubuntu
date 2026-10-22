@@ -87,7 +87,7 @@ jobs:
       - name: Show Build Output
         if: always()
         run: |
-          find /tmp/twrp/out/target/product -type f
+          find ~/twrp/out/target/product -type f
 
       - name: Fix Permissions
         if: always()
@@ -104,5 +104,5 @@ jobs:
           path: |
             ~/twrp/out/target/product/tornado/vendor_boot.img
             ~/twrp/out/target/product/tornado/vendorboot.img
-            ~twrp/out/target/product/tornado/boot.img
+            ~/twrp/out/target/product/tornado/boot.img
             ~/twrp/out/target/product/tornado/recovery.img
