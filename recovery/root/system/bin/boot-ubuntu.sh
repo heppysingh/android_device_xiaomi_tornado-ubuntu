@@ -14,7 +14,19 @@ DS_FLAGS="--hw-access --privileged=full -B /tmp:/recovery --foreground"
 # If you want to use a directory-based rootfs, simply change
 # -i ${ROOTFS_PATH} to -r ${ROOTFS_PATH} in the main command.
 if [ ! -b /dev/block/mapper/rootfs_b ]; then
-    lptools --map rootfs_b
+    echo "[boot-ubuntu] Mapping rootfs_b..." > /dev/kmsg
+    lptools --map rootfs_b > /dev/kmsg 2>&1
+fi
+
+# Wait up to 5 seconds for ueventd to populate the mapper node
+WAIT=0
+while [ ! -b /dev/block/mapper/rootfs_b ] && [ $WAIT -lt 5 ]; do
+    sleep 1
+    WAIT=$((WAIT + 1))
+done
+
+if [ ! -b /dev/block/mapper/rootfs_b ]; then
+    echo "[boot-ubuntu] ERROR: /dev/block/mapper/rootfs_b failed to appear!" > /dev/kmsg
 fi
 
 
