@@ -28,6 +28,6 @@
    fastboot reboot recovery
 
 # Flashing Process
-​<img src="https://raw.githubusercontent.com/heppysingh/android_device_xiaomi_tornado_ubuntu/main/assets/flash.jpg" width="600" alt="Flash Process">
+​<img src="https://raw.githubusercontent.com/heppysingh/android_device_xiaomi_tornado-ubuntu/main/assets/flash.jpg" width="600" alt="Flash Process">
 # ​Ubuntu Running
-​<img src="https://raw.githubusercontent.com/heppysingh/android_device_xiaomi_tornado_ubuntu/main/assets/ubuntu.jpg" width="600" alt="Ubuntu Running">
+​<img src="https://raw.githubusercontent.com/heppysingh/android_device_xiaomi_tornado-ubuntu/main/assets/ubuntu.jpg" width="600" alt="Ubuntu Running">
